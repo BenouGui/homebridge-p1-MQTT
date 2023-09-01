@@ -2,70 +2,50 @@
   "pluginAlias": "P1",
   "pluginType": "platform",
   "singular": true,
-  "headerDisplay": "Homebridge plugin for DSMR end-consumer (P1) interface",
+  "headerDisplay": "Test P1 MQTT to homebridge",
   "footerDisplay": "",
   "schema": {
     "type": "object",
     "properties": {
-      "dsmr22": {
-        "title": "DSMR v2.2",
-        "description": "Connect to DSMR v2.2 smart meter.  Default: false.",
-        "type": "boolean"
-      },
-      "host": {
-        "title": "Host",
-        "description": "Hostname and port of relay server to use instead of serial port connection.  Default: none.",
-        "type": "string"
-      },
       "name": {
         "description": "Plugin name as displayed in the Homebridge log.",
         "type": "string",
         "required": true,
         "default": "P1"
       },
-      "serialPort": {
-        "title": "Serial Port",
-        "description": "Serial port connected to the P1 interface.  E.g. '/dev/ttyUSB0'.",
-        "type": "string"
+      "url":  {
+        "title": "url",
+        "type": "string",
+        "default": "mqtt://120.0.0.1",
+        "required": true,
+        "description": "Replace 127.0.0.1 with the ip-address of your mqtt broker."
       },
-      "timeout": {
-        "title": "Timeout",
-        "description": "Timeout in seconds.  Default: 5.",
-        "type": "integer",
-        "minimum": 5,
-        "maximum": 120
+      "port": {
+        "title": "port",
+        "type": "string",
+        "required": false,
+        "default": "1883",
+        "description": "Mqtt port (optional, default 1883)."
       },
-      "wsPort": {
-        "title": "Web Socket Server Port",
-        "description": "Port for the web socket server to relay P1 telegrams.  Default: none.",
-        "type": "integer",
-        "maximum": 65535
+      "username": {
+        "title": "username",
+        "type": "string",
+        "required": false,
+        "description": "Add a username for the mqtt broker if required."
+      },
+      "password": {
+        "title": "password",
+        "type": "string",
+        "required": false,
+        "description": "Add a password for the mqtt broker if required."
       }
     }
   },
   "form": [
     "name",
-    "outlet",
-    {
-      "type": "fieldset",
-      "expandable": true,
-      "title": "Advanced Settings",
-      "description": "Don't change these, unless you understand what you're doing.",
-      "items": [
-        "serialPort",
-        "dsmr22",
-        "timeout"
-      ]
-    },
-    {
-      "type": "fieldset",
-      "expandable": true,
-      "title": "Relay Settings",
-      "description": "Don't change these, unless you understand what you're doing.",
-      "items": [
-        "wsPort",
-        "host"
-      ]
-    }
+    "url",
+    "port",
+    "username",
+    "password"
   ]
 }
